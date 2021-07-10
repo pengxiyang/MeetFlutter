@@ -2,6 +2,7 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/NewRoute.dart';
+import 'package:flutter_app/widget1.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,11 +30,10 @@ class MyApp extends StatelessWidget {
         "new_page": (context) => NewRoute(),
         "/": (context) => MyHomePage(title: 'Flutter Demo Home Page'),
         "echo_page": (context) => EchoRoute(),
+        "counter_page": (context) => CounterWidget(),
+        "c_page":(context)=>CupertinoTestRoute(),
         "tips": (context) {
-          return TipRoute(text: ModalRoute
-              .of(context)
-              .settings
-              .arguments);
+          return TipRoute(text: ModalRoute.of(context).settings.arguments);
         },
       },
       /*  onGenerateRoute: (RouteSettings settings) {
@@ -120,10 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               '$_counter',
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .headline4,
+              style: Theme.of(context).textTheme.headline4,
             ),
             FlatButton(
               child: Text("open new route"),
@@ -142,12 +139,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   return ContextRoute();
                 }));
               },
-              child: Text("Context Route",
-                style: TextStyle(
-                    color: Colors.red
-                ),
+              child: Text(
+                "Context Route",
+                style: TextStyle(color: Colors.red),
               ),
             ),
+            TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "counter_page");
+                },
+                child: Text("counter_page")),
           ],
         ),
       ),
@@ -171,10 +172,7 @@ class EchoRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var args = ModalRoute
-        .of(context)
-        .settings
-        .arguments;
+    var args = ModalRoute.of(context).settings.arguments;
     //打开路由时传递参数
     Navigator.of(context).pushNamed("echo_page", arguments: "hi");
 
@@ -205,11 +203,9 @@ class ContextRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Context 测试",
-          style: TextStyle(
-              color: Colors.deepOrange
-          ),
-
+        title: Text(
+          "Context 测试",
+          style: TextStyle(color: Colors.deepOrange),
         ),
       ),
       body: Container(
@@ -222,71 +218,3 @@ class ContextRoute extends StatelessWidget {
     throw UnimplementedError();
   }
 }
-
-class CounterWidget extends StatefulWidget {
-  const CounterWidget({
-    Key key,
-    this.initValue: 0
-  });
-
-  final int initValue;
-
-  @override
-  State<StatefulWidget> createState() => new _CounterWidgetState();
-}
-
-class _CounterWidgetState extends State<CounterWidget> {
-  int _counter;
-
-  @override
-  void initState() {
-    super.initState();
-    _counter = widget.initValue;
-    print("initState");
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    print("build");
-    return Scaffold(
-      body: Center(
-        child: TextButton(
-          child: Text('$_counter'),
-          onPressed: ()=>setState(()=> ++_counter),
-        ),
-      ),
-    );
-  }
-
-  @override
-  void didUpdateWidget(covariant CounterWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    print("didUpdateWidget");
-  }
-
-  @override
-  void deactivate() {
-    super.deactivate();
-    print("dectivate");
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    print("dispose");
-  }
-
-  @override
-  void reassemble() {
-    super.reassemble();
-    print("reassemble");
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    print("didChangeDepencies");
-  }
-}
-
-
