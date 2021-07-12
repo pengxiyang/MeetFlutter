@@ -12,6 +12,7 @@ class CounterWidget extends StatefulWidget {
 
 class _CounterWidgetState extends State<CounterWidget> {
   int _counter;
+  static GlobalKey<ScaffoldState> _globalKey = GlobalKey();
 
   @override
   void initState() {
@@ -24,6 +25,7 @@ class _CounterWidgetState extends State<CounterWidget> {
   Widget build(BuildContext context) {
     print("build");
     return Scaffold(
+      key: _globalKey,
       appBar: AppBar(
         title: Text("Counter Widget"),
       ),
@@ -43,7 +45,19 @@ class _CounterWidgetState extends State<CounterWidget> {
                     SnackBar(content: Text("我是SnackBar!")),
                   );
                 },
-                child: Text("显示SnackBar")),
+                child: Text("显示SnackBar的第一种方式")),
+            ElevatedButton(
+                onPressed: () {
+                  ScaffoldMessengerState _state = ScaffoldMessenger.of(context);
+                  _state.showSnackBar(SnackBar(content: Text("我是SnackBar2")));
+                },
+                child: Text("显示SnackBar的第二种方式")),
+            ElevatedButton(
+                onPressed: () {
+                  _globalKey.currentState
+                      .showSnackBar(SnackBar(content: Text("我是SnackBar3")));
+                },
+                child: Text("显示SnackBar的第三种方式")),
             TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "c_page");
@@ -93,12 +107,26 @@ class CupertinoTestRoute extends StatelessWidget {
       navigationBar: CupertinoNavigationBar(
         middle: Text("Cupertino Demo"),
       ),
-      child: CupertinoButton(
-        color: CupertinoColors.activeBlue,
-        child: Text("Press"),
-        onPressed: () {},
+      child: Center(
+        child: CupertinoButton(
+          color: CupertinoColors.activeBlue,
+          child: Text("Press"),
+          onPressed: () {},
+        ),
       ),
     );
     throw UnimplementedError();
   }
+}
+
+class TapboxA extends StatefulWidget {
+  TapboxA({Key key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => _TapboxAState();
+}
+
+class _TapboxAState extends State<TapboxA> {
+  @override
+  Widget build(BuildContext context) {}
 }
