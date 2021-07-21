@@ -2,7 +2,9 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/NewRoute.dart';
+import 'package:flutter_app/status.dart';
 import 'package:flutter_app/widget1.dart';
+import 'package:flutter_app/widget_3_2.dart';
 
 void main() {
   runApp(MyApp());
@@ -35,6 +37,11 @@ class MyApp extends StatelessWidget {
         "tips": (context) {
           return TipRoute(text: ModalRoute.of(context).settings.arguments);
         },
+        "tapa":(context)=> TapboxAW(),
+        "tapb":(context)=> ParentWidget(),
+        "tapc" :(context) => ParentWidgetC(),
+        "widget":(context) => TestWidget(),
+        "widget1":(context) => TestWidget1(),
       },
       /*  onGenerateRoute: (RouteSettings settings) {
         return MaterialPageRoute(builder: (context) {
@@ -149,6 +156,31 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.pushNamed(context, "counter_page");
                 },
                 child: Text("counter_page")),
+            TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "tapa");
+                },
+                child: Text("tapa")),
+            TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "tapb");
+                },
+                child: Text("tapb")),
+            TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "tapc");
+                },
+                child: Text("tapc")),
+            TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "widget");
+                },
+                child: Text("widget")),
+            TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "widget1");
+                },
+                child: Text("widget1")),
           ],
         ),
       ),
