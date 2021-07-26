@@ -5,6 +5,7 @@ import 'package:flutter_app/NewRoute.dart';
 import 'package:flutter_app/status.dart';
 import 'package:flutter_app/widget1.dart';
 import 'package:flutter_app/widget_3_2.dart';
+import 'package:flutter_app/widget_bt.dart';
 
 void main() {
   runApp(MyApp());
@@ -42,6 +43,8 @@ class MyApp extends StatelessWidget {
         "tapc" :(context) => ParentWidgetC(),
         "widget":(context) => TestWidget(),
         "widget1":(context) => TestWidget1(),
+        "btwidget":(context)=> BtWidget(),
+        "image": (context) => ImageWidget(),
       },
       /*  onGenerateRoute: (RouteSettings settings) {
         return MaterialPageRoute(builder: (context) {
