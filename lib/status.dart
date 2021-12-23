@@ -2,6 +2,33 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+class TapStateWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: AppBar(
+        title: Text("Tap状态"),
+      ),
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            ElevatedButton(onPressed: () {
+              Navigator.pushNamed(context, "tap_a");
+            }, child: Text("TapA")),
+            TextButton(onPressed: (){
+              Navigator.pushNamed(context, "tap_b");
+            }, child: Text("TapB")),
+            OutlinedButton(onPressed: (){
+              Navigator.pushNamed(context, "tap_c");
+            }, child: Text("TapC"))
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 //Widget管理自身状态
 class TapboxAW extends StatefulWidget {
   TapboxAW({Key key}) : super(key: key);
@@ -104,27 +131,25 @@ class TapboxB extends StatelessWidget {
 // 混合状态管理
 
 class ParentWidgetC extends StatefulWidget {
-         @override
-         _ParentWidgetCState createState() => new _ParentWidgetCState();
+  @override
+  _ParentWidgetCState createState() => new _ParentWidgetCState();
 }
 
 class _ParentWidgetCState extends State<ParentWidgetC> {
   bool _active = false;
-  void _handleTapboxChanged(bool newValue){
-    setState(() {
-      _active =newValue;
-    });
 
+  void _handleTapboxChanged(bool newValue) {
+    setState(() {
+      _active = newValue;
+    });
   }
+
   @override
   Widget build(BuildContext context) {
-       return new Container(
-         child: new TapboxC(
-             active: _active,
-             onChanged: _handleTapboxChanged),
-       );
+    return new Container(
+      child: new TapboxC(active: _active, onChanged: _handleTapboxChanged),
+    );
   }
-
 }
 
 //------------------------------------------------TapboxC--------------------------------------------------------------------------

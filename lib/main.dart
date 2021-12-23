@@ -1,10 +1,11 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/3/3-4.dart';
 import 'package:flutter_app/NewRoute.dart';
 import 'package:flutter_app/status.dart';
 import 'package:flutter_app/widget1.dart';
-import 'package:flutter_app/widget_3_2.dart';
+import 'package:flutter_app/3/widget_3_2.dart';
 import 'package:flutter_app/widget_bt.dart';
 
 void main() {
@@ -27,6 +28,11 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
+        hintColor: Colors.red,//下划线颜色
+        inputDecorationTheme: InputDecorationTheme(
+          labelStyle: TextStyle(color: Colors.grey),//定义lable字体样式
+          hintStyle: TextStyle(color: Colors.grey,fontSize: 14.0),//定义提示文本样式
+        ),
         primarySwatch: Colors.blue,
       ),
       routes: {
@@ -38,13 +44,15 @@ class MyApp extends StatelessWidget {
         "tips": (context) {
           return TipRoute(text: ModalRoute.of(context).settings.arguments);
         },
-        "tapa":(context)=> TapboxAW(),
-        "tapb":(context)=> ParentWidget(),
-        "tapc" :(context) => ParentWidgetC(),
+        "tap_state":(context)=>TapStateWidget(),
+        "tap_a":(context)=> TapboxAW(),
+        "tap_b":(context)=> ParentWidget(),
+        "tap_c" :(context) => ParentWidgetC(),
         "widget":(context) => TestWidget(),
         "widget1":(context) => TestWidget1(),
         "btwidget":(context)=> BtWidget(),
         "image": (context) => ImageWidget(),
+        "3-4":(context) => SwitchAndCheckBoxTestRoute(),
       },
       /*  onGenerateRoute: (RouteSettings settings) {
         return MaterialPageRoute(builder: (context) {
@@ -122,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             RandomWordsWidget(),
             Text(
@@ -158,22 +166,22 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   Navigator.pushNamed(context, "counter_page");
                 },
-                child: Text("counter_page")),
+                child: Text("SnackBar")),
             TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, "tapa");
+                  Navigator.pushNamed(context, "tap_state");
                 },
-                child: Text("tapa")),
-            TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, "tapb");
-                },
-                child: Text("tapb")),
-            TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, "tapc");
-                },
-                child: Text("tapc")),
+                child: Text("tapState")),
+            // TextButton(
+            //     onPressed: () {
+            //       Navigator.pushNamed(context, "tapb");
+            //     },
+            //     child: Text("tapb")),
+            // TextButton(
+            //     onPressed: () {
+            //       Navigator.pushNamed(context, "tapc");
+            //     },
+            //     child: Text("tapc")),
             TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "widget");

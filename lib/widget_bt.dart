@@ -25,7 +25,7 @@ class BtWidget extends StatelessWidget {
             ),
             TextButton(
               child: Text(
-                "Submit1",
+                "SwitchAndCheckBox",
                 style: TextStyle(color: Colors.white),
               ),
               //设置按钮是否自动获取焦点
@@ -69,7 +69,9 @@ class BtWidget extends StatelessWidget {
                 //外边框装饰，会覆盖side配置的样式
                 shape: MaterialStateProperty.all(StadiumBorder()),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, "3-4");
+              },
             ),
             Image(
               image: AssetImage("images/avatar.png"),
