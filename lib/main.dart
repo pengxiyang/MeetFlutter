@@ -2,6 +2,7 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/3/3-4.dart';
+import 'package:flutter_app/3/3-5.dart';
 import 'package:flutter_app/NewRoute.dart';
 import 'package:flutter_app/status.dart';
 import 'package:flutter_app/widget1.dart';
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
         "btwidget":(context)=> BtWidget(),
         "image": (context) => ImageWidget(),
         "3-4":(context) => SwitchAndCheckBoxTestRoute(),
+        "3-5":(context)=> FormRoute(),
       },
       /*  onGenerateRoute: (RouteSettings settings) {
         return MaterialPageRoute(builder: (context) {
@@ -192,6 +194,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.pushNamed(context, "widget1");
                 },
                 child: Text("widget1")),
+            ElevatedButton(onPressed: (){
+
+              Navigator.pushNamed(context, "3-5");
+            }, child: Text("Form"))
           ],
         ),
       ),
